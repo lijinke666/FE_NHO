@@ -12,5 +12,6 @@ const loadRoute = loader => {
 };
 
 const Home = loadRoute(import(/* webpackChunkName: "home" */ "Home")); //主页
+const examinationDetail = loadRoute(import(/* webpackChunkName: "examinationDetail" */ "app/routes/examinationDetail")); //主页
 
-export { Home };
+export { Home,examinationDetail };

@@ -1,12 +1,15 @@
-import fetch from "libs/fetch";
-export const TEST_ACTION = "test_action";
+import fetch from 'libs/fetch';
+export const GET_EXAMINATION_LISTS = 'get_examination_lists';
 
 /**
  * @param {Any} params
  */
-export default (params = {}) => async dispatch => {;
-    dispatch({
-      type: TEST_ACTION,
-      loading: false
-    });
+export default (params = {},cb) => async dispatch => {
+  //TODO: fetching examination lists
+  const lists = await fetch.getMockJson("/examination.json");
+  dispatch({
+    type: GET_EXAMINATION_LISTS,
+    lists
+  });
+  cb && cb(lists)
 };

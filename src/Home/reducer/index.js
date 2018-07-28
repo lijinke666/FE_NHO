@@ -1,20 +1,14 @@
-import { TEST_ACTION } from "../action";
+import { GET_EXAMINATION_LISTS } from "../action";
 const defaultState = {
-  loading: true,
-  data: {
-    toolName: "",
-    name: "",
-    repository: {}
-  }
+  lists: []
 };
 export default function(state = defaultState, action) {
-  const { type, data, loading } = action;
+  const { type, lists } = action;
   switch (type) {
-    case TEST_ACTION:
+    case GET_EXAMINATION_LISTS:
       return {
         ...state,
-        data,
-        loading
+        lists
       };
     default:
       return state;
