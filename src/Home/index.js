@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Button, Divider } from 'antd';
-import history from 'libs/history';
+import { Link } from "react-router-dom"
 import errorBoundary from 'shared/components/ErrorBoundary';
 
 import getExaminationLists from './action';
@@ -27,9 +27,8 @@ const columns = [
         <Button
           type="primary"
           icon="edit"
-          onClick={() => history.push(`/detail/${id}`)}
         >
-          立即做题
+          <Link to={`/detail/${id}`} style={{color:"#fff",marginLeft:10}}>立即答题</Link>
         </Button>
       );
     }
