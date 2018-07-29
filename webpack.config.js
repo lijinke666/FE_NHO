@@ -7,7 +7,7 @@ const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const ManifestPlugin = require("webpack-manifest-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-const { host, devPort } = require("./config");
+const { host, devPort,mockHost,mockPort } = require("./config");
 
 module.exports = env => {
   //env 是npm script 运行webpack时传进来的  判断是否是开发环境
@@ -39,7 +39,15 @@ module.exports = env => {
         timings: true //显示时间
       },
       open: true, //打开浏览器 替代open-plugin 插件
-      openPage: ""
+      openPage: "",
+      proxy: {
+        '/api/*': {
+          target: `${mockHost}:${mockPort}`,
+          changeOrigin: true,
+        },
+        logLevel: 'debug',
+      }
+    
     },
 
     //入口

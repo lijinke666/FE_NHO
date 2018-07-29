@@ -6,8 +6,8 @@ const options = {
   host: "http://localhost",        //接口请求 host
   devPort:8080,                   //web-devServer 的 开发端口
   port:9999,                      //接口请求的 端口
-  mockHost:"http://localhost",   //模拟数据服务器 host
-  mockPort:8080,                 //模拟数据服务器 port
+  mockHost:"http://10.206.20.225",   //模拟数据服务器 host
+  mockPort:8888,                 //模拟数据服务器 port
 }
 
 module.exports = options

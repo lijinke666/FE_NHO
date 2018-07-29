@@ -1,18 +1,20 @@
-import { GET_EXAMINATION_DETAIL,SUBMIT_PAPER_QUESTIONS } from "../action";
+import { GET_PAPER_QUESTIONS, SUBMIT_PAPER_QUESTIONS } from '../action';
 const defaultState = {
-  questions: []
+  questions: [],
+  score:0
 };
 export default function(state = defaultState, action) {
-  const { type, questions, } = action;
+  const { type, questions,score } = action;
   switch (type) {
-    case GET_EXAMINATION_DETAIL:
+    case GET_PAPER_QUESTIONS:
       return {
         ...state,
         questions
       };
     case SUBMIT_PAPER_QUESTIONS:
       return {
-        ...state
+        ...state,
+        score
       }
     default:
       return state;

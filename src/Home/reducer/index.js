@@ -1,14 +1,14 @@
 import { GET_PAPER_LISTS } from "../action";
 const defaultState = {
-  lists: []
+  paperLists: []
 };
 export default function(state = defaultState, action) {
-  const { type, lists } = action;
+  const { type, paperLists } = action;
   switch (type) {
     case GET_PAPER_LISTS:
       return {
         ...state,
-        lists
+        paperLists
       };
     default:
       return state;

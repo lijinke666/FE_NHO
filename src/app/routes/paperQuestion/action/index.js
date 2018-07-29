@@ -14,11 +14,12 @@ export default ({id} = {}) => async dispatch => {
   });
 };
 
-export const submitQuestions = ({id,questions} = {}) => async dispatch => {
+export const submitQuestions = (questions,callback) => async dispatch => {
   //TODO: submit questions
-  const data = await fetch.postMockJson(`/papers/${id}/questions`);
+  const score = await fetch.postMockJson(`/papers/submitAnswer`,questions);
   dispatch({
     type: SUBMIT_PAPER_QUESTIONS,
-    data
+    score
   });
+  callback && callback(score)
 };

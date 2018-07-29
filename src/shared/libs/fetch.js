@@ -32,7 +32,7 @@ const helper = {
   async getMockJson(url, params) {
     NProgress.start();
     const data = await fetch(
-      `${mockHost}:${mockPort}${url}${
+      `/api${url}${
         params ? `?${qs.stringify(params)}` : ""
       }`,
       {
@@ -56,9 +56,12 @@ const helper = {
     const fetchConfig = {
       method: "POST",
       mode: "cors",
+      // headers:{
+      //   "Content-Type":"application/json"
+      // },
       body: isForm ? params : JSON.stringify(params)
     };
-    const data = await fetch(`${mockHost}:${mockPort}${url}`, fetchConfig);
+    const data = await fetch(`/api${url}`, fetchConfig);
     helper.removeProgress();
     return data.json();
   },

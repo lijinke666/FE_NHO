@@ -1,0 +1,46 @@
+.detail-form{
+  @score-color: red;
+  width:800px;
+  min-height: 100vh;
+  margin :20px auto;
+  border:1px solid #ccc;
+  padding: 50px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 5px #dcdcdc;
+  position: relative;
+  .detail-form-button{
+    display: block;
+    width:100%;
+  }
+
+  .score {
+    position: absolute;
+    font-size: 60px;
+    color:@score-color;
+    right:50px;
+    top:0;
+    font-weight:100;
+    border-bottom: 2px solid @score-color;
+    transform: rotate(10deg);
+    animation: fadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+    &:after{
+      content:" ";
+      width:100px;
+      height:2px;
+      position: absolute;
+      background-color: @score-color;
+      bottom:-12px;
+      left:0;
+    }
+
+    @keyframes fadeIn {
+      from{
+        opacity: 0
+      }
+      to{
+        opacity: 1
+      }
+    }
+  }
+}

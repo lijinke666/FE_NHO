@@ -6,10 +6,10 @@ export const GET_PAPER_LISTS = 'get_paper_lists';
  */
 export default (params = {},cb) => async dispatch => {
   //TODO: fetching paper lists
-  const lists = await fetch.getMockJson("/paper.json");
+  const paperLists = await fetch.getMockJson("/papers");
   dispatch({
     type: GET_PAPER_LISTS,
-    lists
+    paperLists
   });
-  cb && cb(lists)
+  cb && cb(paperLists)
 };

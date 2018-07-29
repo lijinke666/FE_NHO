@@ -28,7 +28,7 @@ const columns = [
           type="primary"
           icon="edit"
         >
-          <Link to={`/detail/${id}`} style={{color:"#fff",marginLeft:10}}>立即答题</Link>
+          <Link to={`/question/${id}`} style={{color:"#fff",marginLeft:10}}>立即答题</Link>
         </Button>
       );
     }
@@ -36,8 +36,8 @@ const columns = [
 ];
 
 @connect(
-  ({ HomeReducer: { lists } }) => ({
-    lists
+  ({ HomeReducer: { paperLists } }) => ({
+    paperLists
   }),
   dispatch =>
     bindActionCreators(
@@ -56,7 +56,7 @@ export default class PaperLists extends PureComponent {
     super(props);
   }
   render() {
-    const { lists } = this.props;
+    const { paperLists } = this.props;
     const { loading } = this.state;
 
     return (
@@ -65,7 +65,7 @@ export default class PaperLists extends PureComponent {
         <Table
           loading={loading}
           rowKey="id"
-          dataSource={lists}
+          dataSource={paperLists}
           columns={columns}
         />
       </div>
