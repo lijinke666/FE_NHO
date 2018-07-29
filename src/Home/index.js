@@ -5,7 +5,7 @@ import { Table, Button, Divider } from 'antd';
 import { Link } from "react-router-dom"
 import errorBoundary from 'shared/components/ErrorBoundary';
 
-import getExaminationLists from './action';
+import getPaperLists from './action';
 import './styles.less';
 
 const columns = [
@@ -42,13 +42,13 @@ const columns = [
   dispatch =>
     bindActionCreators(
       {
-        getExaminationLists
+        getPaperLists
       },
       dispatch
     )
 )
 @errorBoundary
-export default class ExaminationLists extends PureComponent {
+export default class PaperLists extends PureComponent {
   state = {
     loading: false
   };
@@ -73,7 +73,7 @@ export default class ExaminationLists extends PureComponent {
   }
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.getExaminationLists({}, () => {
+    this.props.getPaperLists({}, () => {
       this.setState({ loading: false });
     });
   }

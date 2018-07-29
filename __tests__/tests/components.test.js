@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React from "react";
 import assert from "power-assert";
-import Root from "../../src/app/components/Root";
+import Home from "../../src/Home";
 import ErrorBoundary from "../../src/shared/components/ErrorBoundary";
 import Container from "../../src/shared/components/Container";
 import NotFound from "../../src/app/components/NotFound";
@@ -26,7 +26,7 @@ describe("ComponentsTests", () => {
   });
   describe("<ErrorBoundary/>", () => {
     it("should render <Alert/> of the <ErrorBoundary/>", () => {
-      const MyComponent = ErrorBoundary(Root);
+      const MyComponent = ErrorBoundary(Home);
       const wrapper = mount(<MyComponent />);
       wrapper.setState({ errorInfo: "errorInfo", error: "error" });
       assert(wrapper.find(Alert).length === 1);
@@ -36,10 +36,10 @@ describe("ComponentsTests", () => {
     it("should render children of the <Container/> and have container className", () => {
       const wrapper = shallow((
         <Container>
-          <div className="dawdler" />
+          <div className="test" />
         </Container>
       ));
-      assert( wrapper.contains(<div className="dawdler" />) === true)
+      assert( wrapper.contains(<div className="test" />) === true)
       assert( wrapper.find(".container").length === 1)
       assert( wrapper.find(".wrap").length === 1)
     });

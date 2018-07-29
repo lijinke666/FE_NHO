@@ -124,7 +124,11 @@
       "json"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      ".history"
+    ],
+    "modulePathIgnorePatterns": [
+      "/.history/"
     ],
     "moduleDirectories": [
       "node_modules",

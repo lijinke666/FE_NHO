@@ -12,8 +12,8 @@ class Login extends Component {
       if(!err){
         //TODO: login
         console.log(values)
+        this.props.history.push('/home')
         sessionStorage.setItem('login',true)
-        this.props.history.push('/')
       }
     });
   };
