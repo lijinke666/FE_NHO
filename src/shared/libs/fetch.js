@@ -1,7 +1,7 @@
 import { message } from "antd";
 import NProgress from "nprogress";
 import qs from "qs";
-import { host, port, mockHost, mockPort } from "../../../config";
+// import { host, port, mockHost, mockPort } from "../../../config";
 import {
   HTTP_RES_MESSAGES,
   HTTP_CODE,
@@ -32,9 +32,7 @@ const helper = {
   async getMockJson(url, params) {
     NProgress.start();
     const data = await fetch(
-      `/api${url}${
-        params ? `?${qs.stringify(params)}` : ""
-      }`,
+      `/api${url}${params ? `?${qs.stringify(params)}` : ""}`,
       {
         method: "GET",
         mode: "cors"
@@ -75,7 +73,7 @@ const helper = {
     NProgress.start();
     helper.setToken();
     return axios
-      .get(`${host}${url}:${port}`, params)
+      .get(`/api${url}`, params)
       .then(helper.handleResponse)
       .catch(helper.handleError);
   },
@@ -90,7 +88,7 @@ const helper = {
     NProgress.start();
     helper.setToken();
     return axios
-      .post(`${host}${url}:${port}`, params)
+      .post(`/api${url}`, params)
       .then(helper.handleResponse)
       .catch(helper.handleError);
   },

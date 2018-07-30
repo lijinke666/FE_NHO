@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Form, Radio, Button, message, Divider, Modal } from 'antd';
-import getPaperQuestions, { submitQuestions } from './action';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Form, Radio, Button, message, Divider, Modal } from "antd";
+import getPaperQuestions, { submitQuestions } from "./action";
 
 const { Item: FormItem } = Form;
 const { Group: RadioGroup } = Radio;
 
-const QUESTION_SCORE = 20
-import './styles.less';
+const QUESTION_SCORE = 20;
+const BACK_PAPER_TIME = 3000;
+import "./styles.less";
 
 @connect(
   ({ PaperQuestionReducer: { questions, score } }) => ({
@@ -33,26 +34,30 @@ class paperQuestion extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        //TODO: submit
-        const questions = Object.values(values);
-        if (questions.some(question => !question)) {
+        const questions = Object.values(values).map((item = "{}") =>
+          JSON.parse(item)
+        );
+        if (questions.some(question => !question.questionId)) {
           Modal.confirm({
-            title: '你还有未回答的题,确定提交吗?',
-            onOk: () => this._submitQuestions(values)
+            title: "你还有未回答的题,确定提交吗?",
+            onOk: () => this._submitQuestions(questions)
           });
         } else {
-          this._submitQuestions(values);
+          this._submitQuestions(questions);
         }
       }
     });
   };
   _submitQuestions = question => {
-    const hide = message.loading('正在提交试卷,请稍后...');
+    const hide = message.loading("正在提交试卷,请稍后...");
     this.setState({ fetching: true });
     this.props.submitQuestions(question, () => {
-      message.success('答题成功!');
+      message.success(`答题成功,${BACK_PAPER_TIME / 1000}秒后回到答题列表!`);
       this.setState({ isSubmitQuestion: true, fetching: false });
       this.props.form.resetFields();
+      setTimeout(() => {
+        this.props.history.push("/home");
+      }, BACK_PAPER_TIME);
       hide();
     });
   };
@@ -92,13 +97,21 @@ class paperQuestion extends Component {
             >
               {getFieldDecorator(`${context}`)(
                 <RadioGroup>
-                  {options.map(({ id: optionId, context: optionTitle }, i) => {
-                    return (
-                      <Radio value={optionTitle} key={String(optionTitle)}>
-                        {optionTitle}
-                      </Radio>
-                    );
-                  })}
+                  {options.map(
+                    ({ id: questionId, context: answerContent }, i) => {
+                      return (
+                        <Radio
+                          value={JSON.stringify({
+                            questionId: id,
+                            answerContent
+                          })}
+                          key={String(answerContent)}
+                        >
+                          {answerContent}
+                        </Radio>
+                      );
+                    }
+                  )}
                 </RadioGroup>
               )}
             </FormItem>

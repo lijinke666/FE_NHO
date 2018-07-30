@@ -1,34 +1,36 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Table, Button, Divider } from 'antd';
-import { Link } from "react-router-dom"
-import errorBoundary from 'shared/components/ErrorBoundary';
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Table, Button, Divider } from "antd";
+import { Link } from "react-router-dom";
+import errorBoundary from "shared/components/ErrorBoundary";
 
-import getPaperLists from './action';
-import './styles.less';
+import getPaperLists from "./action";
+import "./styles.less";
 
 const columns = [
   {
-    title: '试卷编号',
-    key: 'id',
-    dataIndex: 'id'
+    title: "试卷编号",
+    key: "id",
+    dataIndex: "id"
   },
   {
-    title: '试卷名称',
-    key: 'title',
-    dataIndex: 'title'
+    title: "试卷名称",
+    key: "title",
+    dataIndex: "title"
   },
   {
-    title: '操作',
-    key: 'menu',
+    title: "操作",
+    key: "menu",
     render: ({ id }) => {
       return (
-        <Button
-          type="primary"
-          icon="edit"
-        >
-          <Link to={`/question/${id}`} style={{color:"#fff",marginLeft:10}}>立即答题</Link>
+        <Button type="primary" icon="edit">
+          <Link
+            to={`/question/${id}`}
+            style={{ color: "#fff", marginLeft: 10 }}
+          >
+            立即答题
+          </Link>
         </Button>
       );
     }

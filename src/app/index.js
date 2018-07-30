@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux'; //5.0 移除了 history 需要手动引入 history依赖
-import { Home, paperQuestion, Login } from 'libs/routes';
-import NotFound from 'app/components/NotFound';
-import history from 'libs/history';
+import React, { Component } from "react";
+import { hot } from "react-hot-loader";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from "react-router-redux"; //5.0 移除了 history 需要手动引入 history依赖
+import { Home, paperQuestion, Login } from "libs/routes";
+import NotFound from "app/components/NotFound";
+import history from "libs/history";
 
-import './styles.less';
+import "./styles.less";
 
-const isLogin = sessionStorage.getItem('login');
+const isLogin = sessionStorage.getItem("login");
 
 class App extends Component {
   render() {
@@ -19,15 +19,9 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={() =>
-                isLogin ? <Home/> : <Redirect to="/login" />
-              }
+              render={() => (isLogin ? <Home /> : <Redirect to="/login" />)}
             />
-            <Route
-              exact
-              path="/home"
-              component={Home}
-            />
+            <Route exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/question/:id" component={paperQuestion} />
             <Route path="*" component={NotFound} />

@@ -1,5 +1,5 @@
 import HomeReducer from "Home/reducer";
-import PaperQuestionReducer from "app/routes/paperQuestion/reducer"
+import PaperQuestionReducer from "app/routes/paperQuestion/reducer";
 
 import { combineReducers } from "redux";
 

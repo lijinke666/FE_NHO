@@ -12,7 +12,11 @@ const loadRoute = loader => {
 };
 
 const Home = loadRoute(import(/* webpackChunkName: "home" */ "Home")); //主页
-const paperQuestion = loadRoute(import(/* webpackChunkName: "paperQuestion" */ "app/routes/paperQuestion")); //试卷列表
-const Login = loadRoute(import(/* webpackChunkName: "login" */ "app/routes/Login")); //登录
+const paperQuestion = loadRoute(
+  import(/* webpackChunkName: "paperQuestion" */ "app/routes/paperQuestion")
+); //试卷列表
+const Login = loadRoute(
+  import(/* webpackChunkName: "login" */ "app/routes/Login")
+); //登录
 
-export { Home,paperQuestion,Login };
+export { Home, paperQuestion, Login };

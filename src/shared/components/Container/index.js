@@ -1,8 +1,6 @@
-
 import React from "react";
 import classNames from "classnames";
 import "./index.less";
-
 
 export default class Container extends React.PureComponent {
   render() {
